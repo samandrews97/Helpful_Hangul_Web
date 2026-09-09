@@ -12,7 +12,7 @@ function SoundChangeRuleListPage() {
   return (
       <div>
         <h1>Sound Change Rules</h1>
-        <ul>
+        <ul style={{ listStyleType: 'none', padding: '0px' }}>
           {soundChangeRulesList.map((soundChangeRules) => (
               <li key={soundChangeRules.id}>
                 <Link to={`/sound-change-rules/${soundChangeRules.id}`}>

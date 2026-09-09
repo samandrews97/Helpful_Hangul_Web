@@ -12,7 +12,7 @@ function JamoListPage() {
   return (
     <div>
       <h1>Jamo</h1>
-      <ul>
+      <ul style={{ listStyleType: 'none', padding: '0px' }}>
         {jamoList.map((jamo) => (
           <li key={jamo.id}>
             <Link to={`/jamo/${jamo.id}`}>
