@@ -21,7 +21,7 @@ function JamoDetailPage() {
       </h1>
       <p>Romanisation: {jamo.romanisation}</p>
       <p>Type: {jamo.jamoType}</p>
-      <p>Manner: {jamo.manner}</p>
+        {jamo.manner && <p>Manner: {jamo.manner}</p>}
       <p>
         Can be choseong: {jamo.canBeChoseong ? 'yes' : 'no'}, jungseong:{' '}
         {jamo.canBeJungseong ? 'yes' : 'no'}, jongseong:{' '}
