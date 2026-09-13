@@ -5,6 +5,10 @@ import { fetchJson } from '../api.js';
 function SoundChangeRuleListPage() {
   const [soundChangeRulesList, setSoundChangeRulesList] = useState([]);
 
+  const uniqueJamo = Array.from(
+      new Map(soundChangeRulesList.map(rule => [rule.triggerJamo.id, rule.triggerJamo])).values()
+  );
+
   useEffect(() => {
     fetchJson('/sound-change-rules').then(setSoundChangeRulesList);
   }, []);
@@ -13,16 +17,13 @@ function SoundChangeRuleListPage() {
       <div>
         <h1>Sound Change Rules</h1>
         <ul style={{ listStyleType: 'none', padding: '0px' }}>
-          {soundChangeRulesList.map((soundChangeRules) => (
-              <li key={soundChangeRules.id}>
-                <Link to={`/sound-change-rules/${soundChangeRules.id}`}>
-                  {soundChangeRules.triggerJamo.character} - {soundChangeRules.triggerJamo.name} {' '}
-                  {soundChangeRules.followingJamo.character} - {soundChangeRules.followingJamo.name} {' '}
-                  {soundChangeRules.resultingJamo.character} - {soundChangeRules.resultingJamo.name} {' '}
-                  {soundChangeRules.soundChangeType}
-                </Link>
-              </li>
-          ))}
+            {uniqueJamo.map((triggerJamo) => (
+                <li key={triggerJamo.id}>
+                    <Link to={`/sound-change-rules/${triggerJamo.id}`}>
+                        {triggerJamo.character} - {triggerJamo.name}
+                    </Link>
+                </li>
+            ))}
         </ul>
       </div>
   );

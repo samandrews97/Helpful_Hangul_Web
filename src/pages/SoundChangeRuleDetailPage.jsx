@@ -4,26 +4,31 @@ import { fetchJson } from '../api.js';
 
 function SoundChangeRuleDetailPage() {
   const { id } = useParams();
-  const [soundChangeRules, setSoundChangeRules] = useState(null);
+  const [rules, setRules] = useState([]);
 
   useEffect(() => {
-    fetchJson(`/sound-change-rules/${id}`).then(setSoundChangeRules);
+    fetchJson(`/jamo/${id}/sound-change-rules`).then(setRules);
   }, [id]);
 
-  if (!soundChangeRules) {
-    return <p>Loading...</p>
-  }
+  const triggerJamo = rules[0]?.triggerJamo;
 
   return (
-      <div>
+    <div>
+      {triggerJamo && (
         <h1>
-          {soundChangeRules.triggerJamo.character} - {soundChangeRules.triggerJamo.name}
+          {triggerJamo.character} — {triggerJamo.name}
         </h1>
-        <p>Following Jamo: {soundChangeRules.followingJamo.character}</p>
-        <p>Resulting Jamo: {soundChangeRules.resultingJamo.character}</p>
-        <p>Sound Change Rule: {soundChangeRules.soundChangeType}</p>
-
-      </div>
+      )}
+      <ul style={{ listStyleType: 'none', padding: '0px' }}>
+        {rules.map((rule) => (
+          <li key={rule.id} style={{ marginBottom: '24px' }}>
+            <p>Following jamo: {rule.followingJamo.character} — {rule.followingJamo.name}</p>
+            <p>Resulting jamo: {rule.resultingJamo.character} — {rule.resultingJamo.name}</p>
+            <p>Rule type: {rule.soundChangeType}</p>
+          </li>
+        ))}
+      </ul>
+    </div>
   );
 }
 
