@@ -1,5 +1,7 @@
 # Helpful Hangul Web
 
+[![CI](https://github.com/samandrews97/Helpful_Hangul_Web/actions/workflows/ci.yml/badge.svg)](https://github.com/samandrews97/Helpful_Hangul_Web/actions/workflows/ci.yml)
+
 The React frontend for Helpful Hangul, a reference for Korean pronunciation. It lets you browse the 40 basic jamo (the letters of Hangul) and see how a final consonant changes sound depending on the consonant that follows it.
 
 **Live demo:** https://d1aq0uzqqm175a.cloudfront.net
@@ -46,7 +48,7 @@ src/
 
 ## Running locally
 
-Requirements: a recent Node.js LTS release, and the [API](https://github.com/samandrews97/Helpful_Hangul) running on http://localhost:8080.
+Requirements: Node.js 24 (or 22.12 and later), and the [API](https://github.com/samandrews97/Helpful_Hangul) running on http://localhost:8080.
 
 ```bash
 git clone https://github.com/samandrews97/Helpful_Hangul_Web.git
@@ -72,6 +74,8 @@ VITE_API_BASE_URL=http://localhost:9090/api
 | `npm run lint` | Lint with Oxlint |
 | `npm run build` | Build for production into `dist/` |
 | `npm run preview` | Serve the production build locally |
+
+GitHub Actions runs the linter, the tests and the build on every push.
 
 ## Deployment
 
